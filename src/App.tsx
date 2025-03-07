@@ -9,11 +9,14 @@ import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/LoginPageComponents/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import { UserRole } from "./lib/types/authTypes";
+import Navbar from "./components/GobalComponents/Navbar";
+import UnauthorizedPage from "./pages/UnauthorizedPage";
 
 const App = () => {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<Navigate to={"/login"} />} />
@@ -28,6 +31,7 @@ const App = () => {
           >
             <Route path="/home-page" element={<HomePage />} />
           </Route>
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
         </Routes>
       </Router>
     </>

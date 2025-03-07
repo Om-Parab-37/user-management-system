@@ -16,7 +16,7 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
       {userRole && allowedRoles.includes(userRole) ? (
         <Outlet />
       ) : (
-        <Navigate to={"/login"} />
+        <Navigate to={"/unauthorized"} />
       )}
     </>
   );
