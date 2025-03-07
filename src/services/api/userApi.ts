@@ -6,3 +6,5 @@ export const getAllUsers: (pageNumber: number) => Promise<IUser[]> = async (page
 export const getUserById: (userId: number) => Promise<IUser> = async (userId: number) => ((await userApi.get(`/users/${userId}`)).data.data)
 
 export const updateUserById: (userId: number) => Promise<IUser> = async (userId) => await userApi.put(`/users/${userId}`)
+
+export const addNewUser: (user: IUser) => Promise<IUser> = async (user) => await userApi.post(`/users`, user)
