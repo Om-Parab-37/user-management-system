@@ -1,5 +1,5 @@
 import NewUserForm from "../components/AdminDashboardComponents/NewUserForm";
-import UserList from "../components/AdminDashboardComponents/UserList";
+import UserList from "../components/HomePageComponents/UserList";
 
 const AdminDashboard = () => {
   return (
