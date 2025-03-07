@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import { UserRole } from "./lib/types/authTypes";
 import Navbar from "./components/GobalComponents/Navbar";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             }
           >
             <Route path="/home-page" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
         </Routes>

@@ -1,4 +1,4 @@
-import { Layout, Menu, Dropdown, Avatar } from "antd";
+import { Layout, Dropdown, Avatar } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { jwtDecode } from "jwt-decode";
@@ -17,7 +17,14 @@ const Navbar = () => {
 
   const userMenu = {
     items: [
-      { label: "profile", key: "profile", icon: <UserOutlined /> },
+      {
+        label: "profile",
+        key: "profile",
+        icon: <UserOutlined />,
+        onClick: () => {
+          navigate("/profile");
+        },
+      },
       {
         label: "logout",
         key: "logout",
