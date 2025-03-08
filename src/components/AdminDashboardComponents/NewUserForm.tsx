@@ -57,7 +57,7 @@ const NewUserForm = ({ onUserAdded }: NewUserFormProps) => {
       }),
   });
 
-  const onSubmit = (values: IUser) => {
+  const onSubmit = (values) => {
     mutate(values);
   };
 

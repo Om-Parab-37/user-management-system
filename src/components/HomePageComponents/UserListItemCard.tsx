@@ -6,11 +6,13 @@ import { jwtDecode } from "jwt-decode";
 
 type UserListItemCardProps = {
   user: IUser;
+  onClick: () => void;
 };
 
-const UserListItemCard = ({ user }: UserListItemCardProps) => {
+const UserListItemCard = ({ user, onClick }: UserListItemCardProps) => {
   const authToken = useAuthStore((state) => state.authToken);
   const authUser = authToken ? jwtDecode<IUser>(authToken) : null;
+
   return (
     <>
       <Card
@@ -18,6 +20,7 @@ const UserListItemCard = ({ user }: UserListItemCardProps) => {
         style={{ width: 240 }}
         cover={<img alt="example" className="h-60" src={user.avatar} />}
         className="relative"
+        onClick={onClick}
       >
         <Meta
           title={`${user.first_name} ${user.last_name}`}
