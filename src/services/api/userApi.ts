@@ -8,6 +8,6 @@ export const getAllUsers: () => Promise<IUser[]> = async () => (await axios.all(
 
 export const getUserById: (userId: number) => Promise<IUser> = async (userId: number) => ((await userApi.get(`/users/${userId}`)).data.data)
 
-export const updateUserById: (userId: number) => Promise<IUser> = async (userId) => await userApi.put(`/users/${userId}`)
+export const updateUserById: (user: IUser) => Promise<IUser> = async (user) => await userApi.put(`/users/${user.id}`, user)
 
 export const addNewUser: (user: IUser) => Promise<IUser> = async (user) => await userApi.post(`/users`, user)
