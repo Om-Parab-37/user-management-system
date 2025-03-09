@@ -14,8 +14,8 @@ const AdminDashboard = () => {
   const [editingUser, setEditingUser] = useState<IUser>(users[0]);
 
   const handleEditUser = (user: IUser) => {
-    setEditingUser(user);
     setIsEditUserModalOpen(true);
+    setEditingUser(user);
   };
   return (
     <>
