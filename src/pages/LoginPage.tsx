@@ -17,8 +17,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="h-screen flex justify-center items-center">
-        <Card className="w-80 shadow ">
+      <div className="h-screen flex justify-center items-center  bg-stone-200">
+        <Card className="w-100 shadow">
           <LoginForm />
         </Card>
       </div>
