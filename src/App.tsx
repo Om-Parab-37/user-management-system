@@ -26,8 +26,6 @@ const App = () => {
   const localUsers = useUsers((state) => state.users);
 
   useEffect(() => {
-    console.log(localUsers);
-
     if (localUsers.length === 0 && users) setUsers(users);
   }, [users]);
   return (

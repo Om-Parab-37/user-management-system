@@ -1,10 +1,9 @@
-import { Avatar, Card, Empty, Typography } from "antd";
+import { Avatar, Card, Typography } from "antd";
 import ModalComponent from "./ModalComponent";
 import { useQuery } from "@tanstack/react-query";
 import { getUserById } from "../../services/api/userApi";
 import { IUser } from "../../lib/types/userTypes";
 import { useUsers } from "../../stores/usersStore";
-import { use } from "react";
 const { Title, Text } = Typography;
 
 type UserDetailsModalProps = {
