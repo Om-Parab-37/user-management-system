@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const userApi = axios.create({
-    baseURL: "https://reqres.in/api"
+    baseURL: import.meta.env.VITE_AUTH_BASE_URL
 })

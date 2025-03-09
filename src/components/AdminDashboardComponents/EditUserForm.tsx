@@ -8,6 +8,7 @@ import { updateUserById } from "../../services/api/userApi";
 import { useUsers } from "../../stores/usersStore";
 import { IUser } from "../../lib/types/userTypes";
 import { useEffect } from "react";
+import { defaultAvtarUrl } from "../../lib/constants";
 
 type EditUserFormProps = {
   onUserEdited: () => void;
@@ -24,8 +25,6 @@ const userFormScema = z.object({
   avatar: z.string().url(),
   role: z.nativeEnum(UserRole),
 });
-const defaultAvtarUrl =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAqQMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYBAwQCB//EAD0QAAICAQEEBQkECQUAAAAAAAABAgMEEQUhMUEGElFhcRMUIjJCUpHB4SNyodE0Q2JzgZKx8PEVJDNUov/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD7iAAAAAAAABqcWXtPExdVZZrNexHewO0Fdu6RSeqox0l22PX8Djs21nT4WqH3YoC3Apv+rbQ/7Uv5UbIbZz4frut96KAtwK3T0iujuuojNdsXoyUxNsYeRpHynk5vhGzcBIAxqZAAAAAAAAAAAAAABoy8unDqdl8uquS5vwNe0c6vBp6898n6secmVHKybcu523S1k+C5LwA7M/bORlNxrbqq7FxfiyOAAAAAAABjTkZAHdg7UyMNpKTsq9yT/o+RZcDPpza+tVLSS9aD4oph7ptsotjZVLqzjwYF7BH7J2lHOq0loro+tHt70SAAAAAAAAAA1ZF8Memdtj0jFas2lb6SZjnbHFg/Rh6U+99gEZm5VmZkSts4P1Y+6uw0AAAAAA4vRcTvxtkZVy60kqo/t8fgBwAmVsF6b8pa/u/qaMjYuVUta3G1dkdz+AEaBJOL6sk01xTWgAAAD3RdZj3RtqlpOL3FywMuGZjRtrWnJrsZSiS2Dmeb5irk9K7dz15Pk/kBbAAAAAAAAa7rY01Ttm/Rgm2Ue2yV1krZ+tN9Zlp6Q2uvZs0v1klD5/IqgAAAADt2RQr86ClvjD0mu3QCU2Ts5UQjbck7muD9n6kmAAAAHFtLZ8MuttLS1erJc+5lZlGUJOM1pJPRrsZcyvbfoVeVGyK3WLf4r+0BGAAAPDiABddnZHnWHVdzcfS8eZ0kJ0Xtcsa6r3Jprwf+CbAAAAAAIPpTLSmiPJyb+C+pXSwdKl9nj/el/RFfAAAASvR1rzq3t8nu+KIk69l3+b5kJt6Rfov+P10AtQNfWej14jrPRceIGwHhN6PjvMPXvA9RkpNpoiekenUx+3WXyJPeuHeyA25keVylWnqqlp/F8fkBHgxqZAAACa6Ly0yr4rg4J/B/UshWei6/3l37v5oswAAAAABD9JodbBhPT1LF8GmvyKyXTaNPnGFdUuMo7vHkUpeGm7gBkAAAABPbI2nGcI4+RLqzXqzftfUluehUqcLIyIt00ykve4Jm6rPzcL7OUpbvYsQFn3aAgVt27q/8FevizRdtTMyfQhLqa+zWt4ErtPaUcWDhVJSufDThHvfeVtvVtvi+J0W4OXXBTnRPR79eOnj2HMAMgAAABP8ARWH6RY17sV+P0J8jtg0OnZ1eq0dnpvXvJEAAAAAAFP2zi+a501FehZ6cfmXA4NsYPnuI1FLysN8PyAqADTi9GmmtzTMwhKycYQWspPRJAeqarLrI11RcpPgkT+DsmmhKd+llv/lfmdGz8KGHVp61kvWl/fI6gHDhyPM64WLSyEZLvWp6AHP5jia/o1P8iNtdVdW6quMPurQ9gAcOdsujKTlFKu330uPijuAFQyca3Gsddy0fauD8DUW3Mxa8ul12bvdkuMWVbIonj3SqtWko/iBrN+BjvKyq6Vwk/S7lzOctOwcB4+P5a1aW2Lg+SAlYxUYqMVoktEjIAAAAAAAAAEFt3Zbm3lY0dZcbIrn3o09H8XdLKkt79GHcub+RYzVKmKWkEl3JbgNQD3cQAAAAAAAAAIzbmKrsfy0Y/aVrXX9kkzZGpNaTSa4aNbmBX9h7Ld045ORHSuL1hF+0+3wLMjCSS0SSXYZAAAAAAAAAAAAAAPMoqS3o1yqa4cDcAOZrTiYOo8uEXyA5wdHk49gUIrkBoS14HqNTfHcbwB5jBR4I9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z";
 
 const EditUserForm = ({ user, onUserEdited }: EditUserFormProps) => {
   const {
@@ -45,8 +44,6 @@ const EditUserForm = ({ user, onUserEdited }: EditUserFormProps) => {
     mutationKey: ["editUser"],
     mutationFn: updateUserById,
     onSuccess: () => {
-      console.log({ ...getValues(), id: user.id });
-
       editUser({ ...getValues(), id: user.id });
       onUserEdited();
       messageApi.open({
