@@ -1,9 +1,27 @@
 
-# User Management System
+# 👤 User Management System 👨‍💼
 
 This project is a User Management System built with React, TypeScript, Ant Design, and React Query. It allows administrators to view, add, edit, delete, sort, and paginate users. The users' data is fetched from an API and synchronized with local storage.
 
-## Demo
+## 🚀 Live Demo
+
+🔗 [User Management System](https://om-parab-37.github.io/user-management-system/)
+
+#### 🔐 Dummy Credentials
+
+##### 🔹 Admin Credentials  
+- ✉️ **Email:** `george.bluth@reqres.in`  
+- ✉️ **Email:** `emma.wong@reqres.in`
+- ✉️ **Email:** `michael.lawson@reqres.in`  
+
+##### 🔹 User Credentials   
+- ✉️ **Email:** `janet.weaver@reqres.in`  
+- ✉️ **Email:** `eve.holt@reqres.in`
+- ..and more
+
+##### 🔑 **Password:** `any password is accepted by resreq user api`   
+
+## 📽️ Demo Video
 
 https://github.com/user-attachments/assets/1318da42-91d7-468f-a43c-13a7d0bf1211
 
