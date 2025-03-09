@@ -12,8 +12,24 @@ import { UserRole } from "./lib/types/authTypes";
 import Navbar from "./components/GobalComponents/Navbar";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
 import ProfilePage from "./pages/ProfilePage";
+import { useUsers } from "./stores/usersStore";
+import { useQuery } from "@tanstack/react-query";
+import { getAllUsers } from "./services/api/userApi";
+import { useEffect } from "react";
 
 const App = () => {
+  const setUsers = useUsers((state) => state.setUsers);
+  const { data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAllUsers,
+  });
+  const localUsers = useUsers((state) => state.users);
+
+  useEffect(() => {
+    console.log(localUsers);
+
+    if (localUsers.length === 0 && users) setUsers(users);
+  }, [users]);
   return (
     <>
       <Router>

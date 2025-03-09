@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserById } from "../../services/api/userApi";
 import { IUser } from "../../lib/types/userTypes";
 import { useUsers } from "../../stores/usersStore";
+import { use } from "react";
 const { Title, Text } = Typography;
 
 type UserDetailsModalProps = {
@@ -31,15 +32,15 @@ const UserDetailsModal = ({
       <ModalComponent isOpen={isOpen} onClose={onClose} title="User Details">
         <Card className="w-full max-w-md shadow-lg">
           <div className="flex flex-col items-center justify-between">
-            <Avatar size={100} src={user?.avatar || localUser?.avatar} />
+            <Avatar size={100} src={localUser?.avatar || user?.avatar} />
 
             <Title level={3}>
-              {user?.first_name || localUser?.first_name}{" "}
-              {user?.last_name || localUser?.last_name}
+              {localUser?.first_name || user?.first_name}{" "}
+              {localUser?.last_name || user?.last_name}
             </Title>
 
             <Text type="secondary" className="mb-5">
-              {user?.email || localUser?.email}
+              {localUser?.email || user?.email}
             </Text>
           </div>
         </Card>
