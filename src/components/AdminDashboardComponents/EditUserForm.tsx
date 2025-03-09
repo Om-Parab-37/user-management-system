@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { updateUserById } from "../../services/api/userApi";
 import { useUsers } from "../../stores/usersStore";
 import { IUser } from "../../lib/types/userTypes";
+import { useEffect } from "react";
 
 type EditUserFormProps = {
   onUserEdited: () => void;
@@ -29,12 +30,12 @@ const defaultAvtarUrl =
 const EditUserForm = ({ user, onUserEdited }: EditUserFormProps) => {
   const {
     getValues,
+    setValue,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<z.infer<typeof userFormScema>>({
     resolver: zodResolver(userFormScema),
-    defaultValues: user,
   });
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -44,12 +45,14 @@ const EditUserForm = ({ user, onUserEdited }: EditUserFormProps) => {
     mutationKey: ["editUser"],
     mutationFn: updateUserById,
     onSuccess: () => {
+      console.log({ ...getValues(), id: user.id });
+
+      editUser({ ...getValues(), id: user.id });
+      onUserEdited();
       messageApi.open({
         type: "success",
         content: "User edited successful",
       });
-      editUser({ ...getValues(), id: user.id });
-      onUserEdited();
     },
 
     onError: (error) =>
@@ -62,6 +65,14 @@ const EditUserForm = ({ user, onUserEdited }: EditUserFormProps) => {
   const onSubmit = (values) => {
     mutate({ ...values, id: user.id });
   };
+
+  useEffect(() => {
+    setValue("avatar", user.avatar);
+    setValue("email", user.email);
+    setValue("first_name", user.first_name);
+    setValue("last_name", user.last_name);
+    setValue("role", user.role || UserRole.USER);
+  }, [user]);
 
   return (
     <>
