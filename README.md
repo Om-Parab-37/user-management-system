@@ -1,54 +1,38 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# User Management System
 
-Currently, two official plugins are available:
+This project is a User Management System built with React, TypeScript, Ant Design, and React Query. It allows administrators to view, add, edit, delete, sort, and paginate users. The users' data is fetched from an API and synchronized with local storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
 
-## Expanding the ESLint configuration
+https://github.com/user-attachments/assets/1318da42-91d7-468f-a43c-13a7d0bf1211
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Lessons Learned
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🧩 Component-Based Architecture
+The project is well-structured with reusable components like UserList, UserListItemCard, and CreateUserModal, making the code modular and maintainable.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### 📦 State Management with Zustand 
+Using Zustand for state management ensures a lightweight and efficient global state solution compared to larger libraries like Redux.
+
+### ⚡React Query for API Calls 
+This handles caching, background fetching, and automatic updates for a smooth and optimized user experience.
+
+### 🛡️ Type Safety with TypeScript 
+TypeScript enforces strict typing, reducing runtime errors and improving code reliability.
+
+### ✅ Form Handling with React Hook Form & Zod
+Ensuring form validation is efficient and scalable.
+
+### 🎨 Ant Design for UI Consistency 
+Using Ant Design components for a professional and accessible UI.
+
+### 📊 Pagination & Sorting
+Implemented efficient client-side pagination and sorting.
+### 💾 Local Storage Syncing
+Keeps API-fetched data synchronized with local storage to optimize performance and ensure persistence.
+
+### 📌 Git Best Practices
+Using proper commit messages, feature branches, and a structured README.md for maintainability.
