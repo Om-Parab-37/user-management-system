@@ -1,1 +1,1 @@
-export const adminIds = [1]
+export const adminIds = [1, 3, 7]

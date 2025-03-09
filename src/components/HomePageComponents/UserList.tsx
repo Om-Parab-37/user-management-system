@@ -1,25 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
 import UserListItemCard from "./UserListItemCard";
-import { getUsersByPageNumber } from "../../services/api/userApi";
 import { useState } from "react";
 import { IUser } from "../../lib/types/userTypes";
 import { Col, Pagination, Row } from "antd";
 import UserDetailsModal from "../GobalComponents/UserDetailsModal";
+import { useUsers } from "../../stores/usersStore";
 
 const UserList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<IUser["id"]>(1);
 
-  const { data: users } = useQuery({
-    queryKey: ["users", currentPage],
-    queryFn: () => getUsersByPageNumber(currentPage),
-  });
+  const users = useUsers((state) => state.users);
 
   const handleUserSelection = (userId: IUser["id"]) => {
     setSelectedUserId(userId);
     setIsModalOpen(true);
   };
+
+  const paginatedUsers = users.slice((currentPage - 1) * 6, currentPage * 6);
 
   return (
     <div className="max-w-screen-lg mx-auto p-4">
@@ -29,7 +27,7 @@ const UserList = () => {
         userId={selectedUserId}
       />
       <Row gutter={[16, 16]} justify="center">
-        {users?.map((user: IUser) => (
+        {paginatedUsers?.map((user: IUser) => (
           <Col
             className="flex justify-center items-center"
             key={user.id}
@@ -45,13 +43,13 @@ const UserList = () => {
           </Col>
         ))}
       </Row>
-      <div className="flex justify-center mt-6">
+      <div className="fixed bottom-0 bg-white py-4 shadow-md flex justify-center">
         <Pagination
           current={currentPage}
           pageSize={6}
-          total={12}
+          total={users.length}
           onChange={(page) => setCurrentPage(page)}
-          showSizeChanger={false} // Hide option to change page size
+          showSizeChanger={false}
         />
       </div>
     </div>
