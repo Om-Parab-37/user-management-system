@@ -1,4 +1,12 @@
-import { Table, Button, Avatar, Space, Popconfirm, Tag } from "antd";
+import {
+  Table,
+  Button,
+  Avatar,
+  Space,
+  Popconfirm,
+  Tag,
+  TableColumnsType,
+} from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { IUser } from "../../lib/types/userTypes";
 import { UserRole } from "../../lib/types/authTypes";
@@ -11,10 +19,12 @@ type UserTableProps = {
   onDelete: (id: IUser["id"]) => void;
 };
 
+type UserTabelDataType = IUser & { key: React.Key };
+
 const UsersTable = ({ users, onEdit, onDelete }: UserTableProps) => {
   const authToken = useAuthStore((state) => state.authToken);
   const authUser = authToken ? jwtDecode<IUser>(authToken) : null;
-  const columns = [
+  const columns: TableColumnsType<UserTabelDataType> = [
     {
       title: "Avatar",
       dataIndex: "avatar",
@@ -25,11 +35,13 @@ const UsersTable = ({ users, onEdit, onDelete }: UserTableProps) => {
       title: "First Name",
       dataIndex: "first_name",
       key: "first_name",
+      sorter: (a, b) => a.first_name.localeCompare(b.first_name),
     },
     {
       title: "Last Name",
       dataIndex: "last_name",
       key: "last_name",
+      sorter: (a, b) => a.first_name.localeCompare(b.first_name),
     },
     {
       title: "Email",
@@ -45,6 +57,17 @@ const UsersTable = ({ users, onEdit, onDelete }: UserTableProps) => {
           {role.toUpperCase()}
         </Tag>
       ),
+      filters: [
+        {
+          text: "Admin",
+          value: UserRole.ADMIN,
+        },
+        {
+          text: "User",
+          value: UserRole.USER,
+        },
+      ],
+      onFilter: (value, record) => record.role === value,
     },
     {
       title: "Actions",
